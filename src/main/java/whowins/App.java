@@ -1,4 +1,6 @@
-package petproject;
+package whowins;
+
+import whowins.persistence.Database;
 
 /**
  * Hello world!

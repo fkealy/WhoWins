@@ -1,4 +1,4 @@
-package petproject;
+package whowins.persistence;
 
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;

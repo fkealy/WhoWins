@@ -1,4 +1,4 @@
-package petproject;
+package whowins;
 
 import static org.junit.Assert.assertTrue;
 
