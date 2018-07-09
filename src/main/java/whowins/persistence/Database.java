@@ -10,19 +10,17 @@ import java.sql.SQLException;
  */
 public class Database {
 
-    public static void createNewInLocation(String fileName) {
+    private static Connection c = null;
 
-        String url = "jdbc:sqlite:C:/sqlite/db/" + fileName;
-
-        try (Connection conn = DriverManager.getConnection(url)) {
-            if (conn != null) {
-                DatabaseMetaData meta = conn.getMetaData();
-                System.out.println("The driver name is " + meta.getDriverName());
-                System.out.println("A new database has been created.");
-            }
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
+    public static void createConnection() {
+        try {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:WhoWins.db");
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
         }
+        System.out.println("Opened database successfully");
     }
 }
+
