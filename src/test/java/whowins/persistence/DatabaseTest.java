@@ -24,7 +24,8 @@ public class DatabaseTest {
 
     @Test
     public void testInsertToFighterDB(){
-        testObj.insertFighter("Freddie",24,183);
+        testObj.insertFighter(testFighter);
+        assertEquals(testFighter.getName(),testObj.getfighterByName(testFighter.getName()).getName());
     }
 
     @Test
@@ -41,4 +42,6 @@ public class DatabaseTest {
     public void testGetFighterFromName(){
        assertEquals(testFighter.getName() , testObj.getfighterByName("Freddie").getName());
     }
+
+    //TODO:TEST REMOVAL OF FIGHTER BY NAME FROM DB
 }

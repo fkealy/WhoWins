@@ -13,8 +13,8 @@ import java.util.List;
 
 public class DatabaseImpl implements Database {
 
-    private static final String COUNT_FIGHTERS_SQL = "SELECT Count(*) FROM Fighters";
     private static final String INSERT_FIGHTER_SQL = "INSERT INTO Fighters(Name,DOB,Height) VALUES(?,?,?)";
+    private static final String COUNT_FIGHTERS_SQL = "SELECT Count(*) FROM Fighters";
     private static final String GET_FIGHTER_BY_NAME = "SELECT * from Fighters where Name = ?";
 
     private static Connection c = null;
@@ -37,7 +37,11 @@ public class DatabaseImpl implements Database {
     }
 
     @Override
-    public void insertFighter(String name, int age, int height) {
+    public void insertFighter(Fighter fighter) {
+        insertFighter(fighter.getName(),fighter.getAge(),fighter.getHeight());
+    }
+
+    private void insertFighter(String name, int age, int height) {
         String dob = convertAgeToDOB(age);
         try {
             PreparedStatement ps = this.c.prepareStatement(INSERT_FIGHTER_SQL);
@@ -49,6 +53,11 @@ public class DatabaseImpl implements Database {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    @Override
+    public List<Fighter> getFightersWithAge(int age) {
+        return null;
     }
 
     private String convertAgeToDOB(int age) {
@@ -88,11 +97,6 @@ public class DatabaseImpl implements Database {
             fighter = new Fighter();
         }
         return fighter;
-    }
-
-    @Override
-    public List<Fighter> getFightersWithAge(int age) {
-        return null;
     }
 
     private Fighter buildFighter(ResultSet rs) throws SQLException {

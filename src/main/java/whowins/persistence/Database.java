@@ -11,11 +11,11 @@ public interface Database {
 
     Connection getConnection();
 
-    void insertFighter(String name, int age, int height);
-
-    int getFighterCount();
+    void insertFighter(Fighter fighter);
 
     Fighter getfighterByName(String name);
 
     List<Fighter> getFightersWithAge(int age);
+
+    int getFighterCount();
 }
