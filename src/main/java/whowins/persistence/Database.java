@@ -1,26 +1,21 @@
 package whowins.persistence;
 
+import whowins.model.Fighter;
+
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.util.List;
 
-/**
- * Created by Freddie on 04/07/2018.
- */
-public class Database {
+public interface Database {
 
-    private static Connection c = null;
+    void createConnection();
 
-    public static void createConnection() {
-        try {
-            Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:WhoWins.db");
-        } catch (Exception e) {
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            System.exit(0);
-        }
-        System.out.println("Opened database successfully");
-    }
+    Connection getConnection();
+
+    void insertFighter(String name, int age, int height);
+
+    int getFighterCount();
+
+    Fighter getfighterByName(String name);
+
+    List<Fighter> getFightersWithAge(int age);
 }
-

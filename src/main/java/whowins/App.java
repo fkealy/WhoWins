@@ -1,16 +1,13 @@
 package whowins;
 
 import whowins.persistence.Database;
+import whowins.persistence.DatabaseImpl;
 
-/**
- * Hello world!
- *
- */
-public class App 
+public class App
 {
     public static void main( String[] args )
     {
-        Database database = new Database();
+        Database database = new DatabaseImpl();
         database.createConnection();
         System.out.println( "Hello World!" );
     }

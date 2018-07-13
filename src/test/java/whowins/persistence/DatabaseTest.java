@@ -1,19 +1,44 @@
 package whowins.persistence;
 
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
+import whowins.model.Fighter;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class DatabaseTest {
 
-    Database testObj;
+    private static Database testObj = new DatabaseImpl();
+    private static Fighter testFighter = new Fighter("Freddie",24,183);
 
-    @Before
-    public void setup(){
-        testObj = new Database();
+    @BeforeClass
+    public static void setup(){
+        testObj.createConnection();
     }
 
     @Test
-    public void getConnection() {
-        testObj.createConnection();
+    public void testConnectionCreated() {
+        assertNotNull(testObj.getConnection());
+    }
+
+    @Test
+    public void testInsertToFighterDB(){
+        testObj.insertFighter("Freddie",24,183);
+    }
+
+    @Test
+    public void testCountFighters(){
+        assertEquals( 1,testObj.getFighterCount());
+    }
+
+    @Test
+    public void testGetHeightFromName(){
+        assertEquals(testFighter.getHeight(),testObj.getfighterByName("Freddie").getHeight());
+    }
+
+    @Test
+    public void testGetFighterFromName(){
+       assertEquals(testFighter.getName() , testObj.getfighterByName("Freddie").getName());
     }
 }
