@@ -16,6 +16,7 @@ public class DatabaseImpl implements Database {
     private static final String INSERT_FIGHTER_SQL = "INSERT INTO Fighters(Name,DOB,Height) VALUES(?,?,?)";
     private static final String COUNT_FIGHTERS_SQL = "SELECT Count(*) FROM Fighters";
     private static final String GET_FIGHTER_BY_NAME = "SELECT * from Fighters where Name = ?";
+    private static final String DELETE_FIGHTER_BY_NAME = "DELETE from Fighters where Name = ?";
 
     private static Connection c = null;
 
@@ -52,6 +53,22 @@ public class DatabaseImpl implements Database {
             close(ps);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+        }
+    }
+
+    @Override
+    public void deleteFighter(Fighter fighter) {
+        delete(fighter.getName());
+    }
+
+    private void delete(String name) {
+        try{
+            PreparedStatement ps = this.c.prepareStatement(DELETE_FIGHTER_BY_NAME);
+            ps.setString(1, name);
+            ps.execute();
+            close(ps);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 

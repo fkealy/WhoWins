@@ -13,6 +13,8 @@ public interface Database {
 
     void insertFighter(Fighter fighter);
 
+    void deleteFighter(Fighter fighter);
+
     Fighter getfighterByName(String name);
 
     List<Fighter> getFightersWithAge(int age);

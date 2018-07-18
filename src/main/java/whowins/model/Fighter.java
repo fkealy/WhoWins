@@ -21,5 +21,10 @@ public class Fighter {
         this.age = 0;
         this.height = 0;
     }
+
+    public Fighter reduceHealth(int hit) {
+        health -= hit;
+        return this;
+    }
 }
 
