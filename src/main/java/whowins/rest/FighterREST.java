@@ -1,14 +1,15 @@
 package whowins.rest;
 
-import org.springframework.stereotype.Controller;
 
-//@Controller
-//@RequestMapping("/fighter")
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
 public class FighterREST {
 
-//    @RequestMapping()
-//    public int getFighters(){
-//        return 200;
-//    }
+    @GetMapping("all-fighters")
+    public int getFighters(){
+        return 200;
+    }
 
 }
