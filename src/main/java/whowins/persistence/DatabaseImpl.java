@@ -9,12 +9,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseImpl implements Database {
 
     private static final String INSERT_FIGHTER_SQL = "INSERT INTO Fighters(Name,DOB,Height) VALUES(?,?,?)";
     private static final String COUNT_FIGHTERS_SQL = "SELECT Count(*) FROM Fighters";
+    private static final String GET_ALL_FIGHTERS_SQL = "SELECT * from Fighters";
     private static final String GET_FIGHTER_BY_NAME = "SELECT * from Fighters where Name = ?";
     private static final String DELETE_FIGHTER_BY_NAME = "DELETE from Fighters where Name = ?";
 
@@ -75,6 +77,18 @@ public class DatabaseImpl implements Database {
     @Override
     public List<Fighter> getFightersWithAge(int age) {
         return null;
+    }
+
+    @Override
+    public List<Fighter> getAllFighters(){
+        try {
+            PreparedStatement ps = this.c.prepareStatement(GET_ALL_FIGHTERS_SQL);
+            return new ArrayList<Fighter>();
+
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     private String convertAgeToDOB(int age) {

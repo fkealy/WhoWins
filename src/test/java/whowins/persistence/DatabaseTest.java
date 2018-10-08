@@ -53,8 +53,8 @@ public class DatabaseTest {
     @Test
     public void testInsertFighterAndThenDeleteFighter() {
         testObj.insertFighter(testFighter);
-        assertEquals(1,testObj.getFighterCount());
+        assertEquals(1, testObj.getFighterCount());
         testObj.deleteFighter(testFighter);
-        assertEquals(0,testObj.getFighterCount());
+        assertEquals(0, testObj.getFighterCount());
     }
 }

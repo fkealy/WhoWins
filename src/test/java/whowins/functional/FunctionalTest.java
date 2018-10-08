@@ -2,16 +2,12 @@ package whowins.functional;
 
 import io.restassured.RestAssured;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
-/**
- * Created by Freddie on 14/07/2018.
- */
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestPropertySource(properties = {"management.port=0"})
@@ -23,7 +19,7 @@ public abstract class FunctionalTest {
     @Before
     public void setup() {
         String baseHost = System.getProperty("server.host");
-        if(baseHost==null){
+        if (baseHost == null) {
             baseHost = "http://localhost";
         }
         RestAssured.baseURI = baseHost;

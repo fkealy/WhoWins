@@ -20,4 +20,6 @@ public interface Database {
     List<Fighter> getFightersWithAge(int age);
 
     int getFighterCount();
+
+    List<Fighter> getAllFighters();
 }
